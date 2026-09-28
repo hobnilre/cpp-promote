@@ -1,0 +1,56 @@
+% Managed common typography. Put article-specific additions in preamble-local.tex.
+% Keep manuscript content in Markdown; keep presentation here.
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\usepackage{placeins}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{abstract}
+\usepackage[font=small,labelfont=bf,labelsep=period]{caption}
+
+\allowdisplaybreaks
+
+% No paragraph indent after a displayed equation.
+\usepackage{etoolbox}
+\makeatletter
+\newcommand*{\ph@noindentnext}{\everypar{{\setbox\z@\lastbox}\everypar{}}}
+\AfterEndEnvironment{equation}{\ph@noindentnext}
+\AfterEndEnvironment{equation*}{\ph@noindentnext}
+\AfterEndEnvironment{align}{\ph@noindentnext}
+\AfterEndEnvironment{align*}{\ph@noindentnext}
+\BeforeBeginEnvironment{equation}{\nopagebreak[4]}
+\BeforeBeginEnvironment{equation*}{\nopagebreak[4]}
+\makeatother
+
+\setlist[itemize]{topsep=4pt,itemsep=2pt,parsep=0pt}
+\setlist[enumerate]{topsep=4pt,itemsep=3pt,parsep=0pt}
+
+\renewcommand{\abstractnamefont}{\normalfont\bfseries}
+\renewcommand{\abstracttextfont}{\normalfont\small}
+\setlength{\absleftindent}{0.05\textwidth}
+\setlength{\absrightindent}{0.05\textwidth}
+
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection}{0.75em}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{0.75em}{}
+\titlespacing*{\section}{0pt}{2.2ex plus 0.6ex minus 0.2ex}{1.1ex plus 0.2ex}
+\titlespacing*{\subsection}{0pt}{1.8ex plus 0.5ex minus 0.2ex}{0.9ex plus 0.2ex}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\itshape \articlerunningtitle}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \fancyfoot[C]{\small\thepage}%
+}
+
+\setlength{\abovedisplayskip}{10pt plus 2pt minus 3pt}
+\setlength{\belowdisplayskip}{10pt plus 2pt minus 3pt}

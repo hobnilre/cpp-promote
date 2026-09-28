@@ -1,0 +1,17 @@
+documentclass: article
+classoption:
+  - 11pt
+geometry:
+  - margin=1.1in
+mainfont: "TeX Gyre Termes"
+sansfont: "TeX Gyre Heros"
+monofont: "TeX Gyre Cursor"
+mathfont: "TeX Gyre Termes Math"
+numbersections: true
+secnumdepth: 3
+indent: true
+linestretch: 1.05
+colorlinks: true
+linkcolor: MidnightBlue
+urlcolor: MidnightBlue
+citecolor: MidnightBlue
