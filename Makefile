@@ -1,4 +1,6 @@
 ARTICLE := numeric-promotion-by-chained-visitors.md
+# First-version date. Keep fixed across revisions; only PDF created advances.
+ARTICLE_DATE := 2026-09-28
 PDF := numeric-promotion-by-chained-visitors.pdf
 PREAMBLE := preamble.tex
 LOCAL_PREAMBLE := preamble-local.tex
@@ -18,6 +20,7 @@ $(PDF): $(ARTICLE) $(PREAMBLE) $(LOCAL_PREAMBLE) $(STYLE) $(FIGURES) $(FIG_ASSET
 	mkdir -p "$(BUILD_ABS)"
 	printf '\\newcommand{\\pdfbuildtimestamp}{%s}\n' "$$(date -u '+%Y-%m-%d %H:%M:%S UTC')" > "$(BUILD_ABS)/pdf-build-time.tex"
 	TMPDIR="$(BUILD_ABS)" pandoc "$(ARTICLE)" --from markdown+tex_math_dollars \
+		--metadata date="$(ARTICLE_DATE)" \
 		--metadata-file="$(STYLE)" --pdf-engine=xelatex --include-in-header="$(PREAMBLE)" \
 		--include-in-header="$(LOCAL_PREAMBLE)" \
 		--include-in-header="$(BUILD_ABS)/pdf-build-time.tex" -o "$@"

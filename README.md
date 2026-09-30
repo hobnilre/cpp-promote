@@ -45,3 +45,7 @@ Shared typography is installed locally in `article-style.yaml`, `preamble.tex`
 and `figures/figure-style.tex`. Article-specific definitions are in
 `preamble-local.tex`. These files are complete build inputs; no tools checkout
 is required.
+
+The title date records the first version. Keep `ARTICLE_DATE` in the Makefile
+and the manuscript's `date` fixed across revisions. The separate `PDF created`
+timestamp continues to record each PDF rebuild in UTC.
