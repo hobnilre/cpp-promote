@@ -93,6 +93,8 @@ Figure \ref{fig:dispatch} separates the two runtime selections from the arithmet
 
 There are two operand-selection stages but four virtual call sites on this source-level path: left acceptance, the left visitor overload, right acceptance, and the right visitor overload. A compiler may devirtualize or inline some calls. Calling this a two-stage visitor construction does not establish that a machine executes exactly two indirect calls.
 
+Finding the operand kinds and deciding what the arithmetic means are separate jobs. The visitor chain supplies the former; the selected operation and result construction determine the latter.
+
 # Result types and what promotion means here
 
 For multiplication in the declared family, the complete table is:
@@ -286,6 +288,8 @@ These change requests support a concrete choice. Chained visitors suit an existi
 The visitor construction does not eliminate the Cartesian product of supported kinds. There are $n^2$ possible binary pairs and $n^k$ tuples for $k$ operands. Templates factor the source description; these counts are neither emitted-code sizes nor runtime instruction counts. For comparison, the explicit design collapses pairs into common-type paths, provided that loss of original type identity is permitted by the arithmetic contract.
 
 On the visitor's source-level path, a successful binary call has four virtual call sites, two temporary visitor objects, and one result allocation. The original multiplication copies two small wrappers into its by-value operation; the subtraction policy above uses references. With fixed-size payloads, dispatch depth is independent of the number of kinds. A speed comparison would require matched allocation, ownership, workloads and compiler settings; the functional comparison here establishes no speed ranking.
+
+The worked cases show how the same arithmetic contract can be reached through different representations. The choice depends on the interface to preserve and the extensions that matter for the interpreter.
 
 # Conditions for a reliable implementation
 
